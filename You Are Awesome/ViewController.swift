@@ -25,7 +25,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+    func nonRepeatingRandom(lastNumber: Int, maxValue: Int) -> Int{
+        var newIndex: Int
+        repeat{
+            newIndex = Int.random(in: 0..<maxValue)
+        } while lastNumber == newIndex
+        return newIndex
+    }
     func playSound(soundName: String){
         
         
@@ -60,32 +66,23 @@ class ViewController: UIViewController {
                         "You are tremendous"]
         
         //var newIndex = -1
-        var newIndex: Int
         // declres but doesnt initialize
         
-        repeat{
-            newIndex = Int.random(in: 0..<messages.count)
-        } while index == newIndex
         
-        index = newIndex
+        
+        // show a message
+        index = nonRepeatingRandom(lastNumber: index, maxValue: messages.count)
         messageLabel.text = messages[index]
         
-        repeat {
-            newIndex = Int.random(in: 0..<numberOfImages)
-        } while imageIndex == newIndex
-        
-        imageIndex = newIndex
+        //show image
+        imageIndex = nonRepeatingRandom(lastNumber: imageIndex, maxValue: numberOfImages)
         awesomeImageView.image = UIImage(named: "image\(imageIndex)" )
         
         //sounds
-        repeat {
-            newIndex = Int.random(in: 0..<numberOfSounds)
-        } while soundIndex == newIndex
+        soundIndex = nonRepeatingRandom(lastNumber: soundIndex, maxValue: numberOfSounds)
         
-        soundIndex = newIndex
-        
-        
-        playSound(soundName: "")
+        let soundName = "sound\(soundIndex)"
+        playSound(soundName: soundName)
         
         //    messageLabel.text = messages[index]
         //
