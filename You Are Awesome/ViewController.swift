@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         } while lastNumber == newIndex
         return newIndex
     }
-    func playSound(soundName: String){
+    func playSound(soundName: String, audioPlayer: inout AVAudioPlayer){
         
         
         var soundName = "sound\(soundIndex)"
@@ -42,8 +42,8 @@ class ViewController: UIViewController {
             
             //checking if sound.data is a soundfile
             do {
-                try awesomePlayer = AVAudioPlayer(data: sound.data)
-                awesomePlayer.play()
+                try audioPlayer = AVAudioPlayer(data: sound.data)
+                audioPlayer.play()
             }catch{
                 //if sound.data is not valid audio file,
                 print("Error: data in \(soundName) couldn't be played as sound.")
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         soundIndex = nonRepeatingRandom(lastNumber: soundIndex, maxValue: numberOfSounds)
         
         let soundName = "sound\(soundIndex)"
-        playSound(soundName: soundName)
+        playSound(soundName: soundName, audioPlayer: &awesomePlayer)
         
         //    messageLabel.text = messages[index]
         //
