@@ -21,47 +21,15 @@ class ViewController: UIViewController {
     let numberOfImages = 10
     let numberOfSounds = 6
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func showMessagePressed(_ sender: UIButton) {
+    func playSound(soundName: String){
         
-        let messages = ["You are awesome",
-                        "You are Great",
-                        "You are Fantastic",
-                        "When the Genius Bar needs help they call you",
-                        "You brighten my day",
-                        "You are da bomb!",
-                        "Hey, Fabulous!",
-                        "You are tremendous"]
-        
-        //var newIndex = -1
-        var newIndex: Int // declres but doesnt initialize
-        repeat{
-            newIndex = Int.random(in: 0..<messages.count)
-        } while index == newIndex
-        
-        index = newIndex
-        messageLabel.text = messages[index]
-        
-        repeat {
-            newIndex = Int.random(in: 0..<numberOfImages)
-        } while imageIndex == newIndex
-        
-        imageIndex = newIndex
-        awesomeImageView.image = UIImage(named: "image\(imageIndex)" )
-        
-        //sounds
         
         var soundName = "sound\(soundIndex)"
-        
-        repeat {
-            newIndex = Int.random(in: 0..<numberOfSounds)
-        } while soundIndex == newIndex
-        
-        soundIndex = newIndex
-        
         //try to load in sound name file
         
         if let sound = NSDataAsset(name: soundName) {
@@ -78,6 +46,46 @@ class ViewController: UIViewController {
             //if something didn't work, tell why
             print("ERROR: file \(soundName) didn't load")
         }
+    }
+    
+    @IBAction func showMessagePressed(_ sender: UIButton) {
+        
+        let messages = ["You are awesome",
+                        "You are Great",
+                        "You are Fantastic",
+                        "When the Genius Bar needs help they call you",
+                        "You brighten my day",
+                        "You are da bomb!",
+                        "Hey, Fabulous!",
+                        "You are tremendous"]
+        
+        //var newIndex = -1
+        var newIndex: Int
+        // declres but doesnt initialize
+        
+        repeat{
+            newIndex = Int.random(in: 0..<messages.count)
+        } while index == newIndex
+        
+        index = newIndex
+        messageLabel.text = messages[index]
+        
+        repeat {
+            newIndex = Int.random(in: 0..<numberOfImages)
+        } while imageIndex == newIndex
+        
+        imageIndex = newIndex
+        awesomeImageView.image = UIImage(named: "image\(imageIndex)" )
+        
+        //sounds
+        repeat {
+            newIndex = Int.random(in: 0..<numberOfSounds)
+        } while soundIndex == newIndex
+        
+        soundIndex = newIndex
+        
+        
+        playSound(soundName: "")
         
         //    messageLabel.text = messages[index]
         //
